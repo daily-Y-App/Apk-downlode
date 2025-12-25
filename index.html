@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y Apps - Trusted APK Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://pl28319348.effectivegatecpm.com/c8/74/97/c87497e644d07152e4a34b913d1987ac.js"></script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; color: #333; line-height: 1.6; scroll-behavior: smooth; }
+        header { background: #1a237e; color: white; padding: 1rem; position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .logo { font-size: 1.2rem; font-weight: bold; }
+        .nav-links { display: flex; gap: 10px; list-style: none; align-items: center; }
+        .nav-links a { color: #cfd8dc; text-decoration: none; font-size: 14px; padding: 8px 12px; border-radius: 20px; transition: 0.3s; }
+        .nav-links a.active { color: white; background: #3f51b5; font-weight: bold; }
+        .lang-select { background: #3f51b5; color: white; border: 1px solid white; padding: 4px; border-radius: 5px; font-size: 12px; }
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        .app-card, .about-section { background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-bottom: 25px; }
+        .apk-icon-circle { width: 100px; height: 100px; background: white; border-radius: 50%; margin: 0 auto 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .app-icon { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* ဒေါင်းလုဒ် ခလုတ်ပုံစံ */
+        .download-btn { background: linear-gradient(135deg, #28a745, #218838); color: white; padding: 15px; border-radius: 30px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: bold; font-size: 1.1rem; cursor: pointer; border: none; width: 100%; }
+        .download-btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        .share-btn { background: #fff; color: #007bff; border: 1px solid #007bff; padding: 10px; border-radius: 30px; margin-top: 12px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; font-size: 14px; cursor: pointer; }
+        footer { background: #1a237e; color: white; text-align: center; padding: 40px 20px; margin-top: 40px; }
+        .footer-icons { display: flex; justify-content: center; gap: 30px; margin: 20px 0; }
+        .footer-icons a { color: white; font-size: 2rem; text-decoration: none; }
+        #timer { font-weight: bold; color: #d32f2f; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">🚀 Y Apps</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="tab-link active" onclick="setActive(this)"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about" class="tab-link" onclick="setActive(this)"><i class="fas fa-info-circle"></i> About</a></li>
+                <li>
+                    <select class="lang-select" onchange="changeLanguage(this.value)">
+                        <option value="my">🇲🇲 မြန်မာ</option>
+                        <option value="en">🇺🇸 EN</option>
+                        <option value="th">🇹🇭 ไทย</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container" id="home">
+        <div class="app-card">
+            <div class="apk-icon-circle">
+                <img src="https://raw.githubusercontent.com/daily-Y-App/Apk-downlode/main/IMG_20251209_205539.png" class="app-icon" alt="Icon">
+            </div>
+            <h2 id="app-title">ဝင်ငွေထွက်ငွေမှတ်စု</h2>
+            <p id="app-desc" style="color:#666; font-size: 14px; margin: 10px 0;">လုပ်ငန်းရှင်များနှင့် အလုပ်သမားများအတွက် နေ့စဉ်သုံးငွေစာရင်းကို အလွယ်တကူ မှတ်တမ်းတင်ရန်။</p>
+            
+            <button id="dl-btn" onclick="startDownloadProcess()" class="download-btn">
+                <i class="fas fa-cloud-arrow-down"></i> <span id="dl-text">Download APK</span>
+            </button>
+            <p id="wait-msg" style="display:none; margin-top:10px; font-size:13px;">Please wait <span id="timer">30</span> seconds...</p>
+            
+            <button class="share-btn" onclick="shareWebsite()">
+                <i class="fas fa-share-nodes"></i> <span id="share-text">Share Website</span>
+            </button>
+        </div>
+
+        <div id="about" class="about-section">
+            <h2 id="about-title"><i class="fas fa-info-circle"></i> About Y Apps</h2>
+            <p id="about-text" style="font-size: 14px; color: #555; text-align: justify; margin-top: 10px;">
+                <b>Y Apps</b> သည် မြန်မာအသုံးပြုသူများအတွက် အသုံးဝင်သော Android Applications များကို အခမဲ့ ဒေါင်းလုဒ်ရယူနိုင်ရန် ပြုလုပ်ထားပါသည်။
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Y Apps - Trusted APK Store</p>
+        <div class="footer-icons">
+            <a href="https://www.facebook.com/share/1C94979wDs/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="tel:0618201594"><i class="fas fa-phone-square"></i></a>
+        </div>
+        <p style="font-size: 14px; color: #cfd8dc;">Connect: 0618201594</p>
+    </footer>
+
+    <script>
+        function setActive(element) {
+            document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // ၂။ APK ဒေါင်းလုဒ်လုပ်ငန်းစဉ်
+        function startDownloadProcess() {
+            var smartLink = "https://www.effectivegatecpm.com/ue0d3gerb?key=aab2b27aee8d50f9a61c7fb136dd54c7";
+            var apkUrl = "https://github.com/daily-Y-App/Apk-downlode/releases/download/V5/Daily.apk";
+            
+            // Smart Link ကြော်ငြာကို အရင်ဖွင့်မည်
+            window.open(smartLink, '_blank');
+
+            // ခလုတ်ကို ပိတ်ထားပြီး Timer စမည်
+            var btn = document.getElementById('dl-btn');
+            var dlText = document.getElementById('dl-text');
+            var waitMsg = document.getElementById('wait-msg');
+            var timerDisplay = document.getElementById('timer');
+            var timeLeft = 30; // ၃၀ စက္ကန့်
+
+            btn.disabled = true;
+            waitMsg.style.display = "block";
+            dlText.innerText = "Processing...";
+
+            var countdown = setInterval(function() {
+                timeLeft--;
+                timerDisplay.innerText = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    window.location.href = apkUrl; // ၃၀ စက္ကန့်ပြည့်လျှင် ဒေါင်းလုဒ်ကျမည်
+                    btn.disabled = false;
+                    dlText.innerText = "Download APK";
+                    waitMsg.style.display = "none";
+                }
+            }, 1000);
+        }
+
+        function shareWebsite() {
+            if (navigator.share) {
+                navigator.share({ title: 'Y Apps', url: window.location.href });
+            } else {
+                alert("Link copied: " + window.location.href);
+            }
+        }
+
+        function changeLanguage(lang) {
+            const content = {
+                en: { title: "Daily Wage Tracker", desc: "Easily record daily income.", dl: "Download APK", share: "Share Website", aboutTitle: "ℹ️ About Y Apps", aboutText: "<b>Y Apps</b> provides free useful Android applications." },
+                my: { title: "ဝင်ငွေထွက်ငွေမှတ်စု", desc: "နေ့စဉ်သုံးငွေစာရင်းကို အလွယ်တကူ မှတ်တမ်းတင်ရန်။", dl: "Download APK", share: "Share Website", aboutTitle: "ℹ️ About Y Apps", aboutText: "<b>Y Apps</b> သည် မြန်မာအသုံးပြုသူများအတွက် အသုံးဝင်သော Android Applications များကို အခမဲ့ ဒေါင်းလုဒ်ရယူနိုင်ရန် ပြုလုပ်ထားပါသည်။" },
+                th: { title: "บันทึกรายรับรายจ่าย", desc: "บันทึกรายรับรายจ่ายประจำวันได้ง่ายๆ", dl: "ดาวน์โหลด APK", share: "แชร์เว็บไซต์", aboutTitle: "ℹ️ เกี่ยวกับ Y Apps", aboutText: "<b>Y Apps</b> ให้บริการแอปพลิเคชัน Android ฟรี" }
+            };
+            document.getElementById('app-title').innerText = content[lang].title;
+            document.getElementById('app-desc').innerText = content[lang].desc;
+            document.getElementById('dl-text').innerText = content[lang].dl;
+            document.getElementById('share-text').innerText = content[lang].share;
+            document.getElementById('about-title').innerHTML = content[lang].aboutTitle;
+            document.getElementById('about-text').innerHTML = content[lang].aboutText;
+        }
+    </script>
+</body>
+</html>
