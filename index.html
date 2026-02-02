@@ -42,7 +42,7 @@
 
     <div id="adOverlay">
         <h2 id="ad-header">Preparing your download...</h2>
-        <p>Please wait <span id="timer">30</span> seconds for the Ad to finish.</p>
+        <p>Please wait <span id="timer">0</span> seconds for the Ad to finish.</p>
         <div class="loader"></div>
         <p style="font-size: 12px; color: #aaa;">Don't close this window</p>
     </div>
@@ -123,7 +123,7 @@
 
             var overlay = document.getElementById('adOverlay');
             var timerDisplay = document.getElementById('timer');
-            var timeLeft = 5; // စက္ကန့် ၃၀ သို့ ပြန်ပြင်ထားသည်
+            var timeLeft = 0; // စက္ကန့် ၃၀ သို့ ပြန်ပြင်ထားသည်
             overlay.style.display = "block";
 
             var countdown = setInterval(function() {
@@ -164,5 +164,6 @@
     </script>
 </body>
 </html>
+
 
 
